@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(yo water:help:*)",
+      "Bash(yo water:new-project:*)",
+      "Bash(yo water:build:*)",
+      "Bash(gradle test:*)",
+      "Bash(python3:*)",
+      "Bash(find:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
