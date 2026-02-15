@@ -6,7 +6,9 @@
       "Bash(yo water:build:*)",
       "Bash(gradle test:*)",
       "Bash(python3:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(wc:*)"
     ],
     "deny": [],
     "ask": []
