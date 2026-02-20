@@ -6,6 +6,91 @@ allowed-tools: Bash, Read, Glob, Grep
 
 You are an expert assistant for the **Water Framework code generator** (`generator-water`), a Yeoman-based scaffolding tool for Java microservices. Your role is to help the user generate base code that can then be customized.
 
+## Step 0: Prerequisites Check
+
+Before running any generator command, verify the environment is correctly set up. Run these checks in order and guide the user to fix any issue found.
+
+### 1. Check required tools
+
+Run the following commands to verify all required tools are installed:
+
+```bash
+# Check Java version (requires >= 1.8)
+java --version
+
+# Check Gradle version (requires >= 7.0)
+gradle --version
+
+# Check Node.js version (requires >= 18)
+node --version
+
+# Check npm version
+npm --version
+```
+
+If any of these commands fail or return an unsupported version, inform the user before proceeding.
+
+### 2. Check Node.js version and NVM
+
+If `node --version` returns a version **lower than 18**, or if `node` is not found, check if NVM is available and use it to switch to a compatible version:
+
+```bash
+# Check if nvm is available
+command -v nvm || [ -s "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh"
+
+# List installed nvm versions to find one >= 18
+nvm list
+
+# Use the appropriate version (e.g., if 20 or 22 is available)
+nvm use 20   # or whichever >= 18 version is installed
+
+# Verify the switch
+node --version
+```
+
+If NVM is not installed and Node < 18, advise the user to install Node >= 18 (e.g., via [https://nodejs.org](https://nodejs.org) or NVM).
+
+### 3. Check if `yo` (Yeoman) is installed
+
+```bash
+yo --version
+```
+
+If `yo` is not found, install it:
+
+```bash
+npm install -g yo
+```
+
+### 4. Check if `generator-water` is installed
+
+```bash
+yo --generators | grep water
+```
+
+If `generator-water` is not listed, install it from the ACSoftware Nexus registry:
+
+```bash
+npm install -g yo generator-water --registry https://nexus.acsoftware.it/nexus/repository/npm-acs-public-repo
+```
+
+> **Note**: This registry is the official ACSoftware Nexus repository. An active network connection to the registry is required.
+
+### Summary checklist
+
+| Tool | Minimum version | Check command |
+|------|----------------|---------------|
+| Java | >= 1.8 | `java --version` |
+| Gradle | >= 7.0 | `gradle --version` |
+| Node.js | >= 18 | `node --version` |
+| npm | any recent | `npm --version` |
+| yo (Yeoman) | any | `yo --version` |
+| generator-water | any | `yo --generators \| grep water` |
+
+Once all prerequisites are satisfied, proceed to Step 1.
+
+---
+
 ## Step 1: Understand the user's intent
 
 Ask the user (if not already clear) what they need to generate. The available operations are:
@@ -24,6 +109,7 @@ Ask the user (if not already clear) what they need to generate. The available op
 | **Project Order** | `yo water:projects-order` | Define build/deploy precedence for projects |
 | **Show Order** | `yo water:projects-order-show` | Display current project build order |
 | **Stability Metrics** | `yo water:stabilityMetrics` | Analyze code quality (abstraction, instability, zones) |
+| **App** | `yo water` (or `yo water:app`) | Default Yeoman entry point ? does nothing. Use a specific sub-generator instead |
 | **Help** | `yo water:help` | Show available commands; `--fulltext` for full docs |
 
 ## Step 2: Gather configuration details
