@@ -35,7 +35,10 @@
       "Bash(./gradlew clean build:*)",
       "Bash(./gradlew publishToMavenLocal:*)",
       "Bash(./gradlew clean:*)",
-      "Bash(./gradlew :ApiGateway-service:test:*)"
+      "Bash(./gradlew :ApiGateway-service:test:*)",
+      "Bash(npm --version:*)",
+      "Bash(npm install:*)",
+      "Bash(gradle --version:*)"
     ],
     "deny": [],
     "ask": []
