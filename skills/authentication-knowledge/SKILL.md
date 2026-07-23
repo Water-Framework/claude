@@ -892,7 +892,7 @@ Client                     REST Layer              Auth Module           User Mo
 
 ## 9-bis. Multitenancy — login gate, companyId claim, impersonation
 
-Company-based multitenancy (full design: `source/multitenancy-analysis-proposal.md`). Enabled issuer-side via `water.authentication.multitenant.enabled` (default false → single-tenant, backward compatible). The token carries the active company; downstream services read it from the claim (no per-request call to a Company service).
+Company-based multitenancy (full design: the `multitenancy-knowledge` skill). Enabled issuer-side via `water.authentication.multitenant.enabled` (default false → single-tenant, backward compatible). The token carries the active company; downstream services read it from the claim (no per-request call to a Company service).
 
 **Login gate (in the AuthenticationProvider, NOT in Authentication core):**
 - Additive overload `AuthenticationProvider.login(username, password, Long companyId)` (default delegates to the 2-arg; providers ignoring tenancy are unaffected).

@@ -253,7 +253,7 @@ Extends `OwnedResource` with sharing capabilities. Integrates with the `SharedEn
 
 ### 2.7-bis Tenant markers — Company-based multitenancy (`it.water.core.api.entity.tenant`)
 
-Two opt-in markers make an entity tenant-scoped (see `source/multitenancy-analysis-proposal.md`). Enforcement lives in `BaseEntityServiceImpl` (Api layer) and applies **only when `SecurityContext.getActiveCompanyId() != null`** (lenient: MT off / non-scoped admin / legacy token → no filtering → fully backward compatible; NO `isAdmin()` special-casing).
+Two opt-in markers make an entity tenant-scoped (see the `multitenancy-knowledge` skill). Enforcement lives in `BaseEntityServiceImpl` (Api layer) and applies **only when `SecurityContext.getActiveCompanyId() != null`** (lenient: MT off / non-scoped admin / legacy token → no filtering → fully backward compatible; NO `isAdmin()` special-casing).
 
 ```java
 // single-company entity: carries a nullable opaque companyId column (null = global/cross-tenant)

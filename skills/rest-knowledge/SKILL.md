@@ -494,7 +494,7 @@ public interface RestApiRegistry extends Service {
 ## 9. JWT Authentication & Security Filters
 
 ### Multitenancy claims (additive)
-When Company-based multitenancy is enabled (`water.authentication.multitenant.enabled`), the encrypted JWT carries two additive claims (see `authentication-knowledge` + `source/multitenancy-analysis-proposal.md`), both emitted by `NimbusJwtTokenService.generateClaims` ONLY when non-null (so legacy/single-tenant tokens are byte-identical):
+When Company-based multitenancy is enabled (`water.authentication.multitenant.enabled`), the encrypted JWT carries two additive claims (see `authentication-knowledge` + the `multitenancy-knowledge` skill), both emitted by `NimbusJwtTokenService.generateClaims` ONLY when non-null (so legacy/single-tenant tokens are byte-identical):
 - `companyId` (`JWTConstants.JWT_CLAIM_COMPANY_ID`) — the active company (tenant) of the session.
 - `impersonatedBy` (`JWTConstants.JWT_CLAIM_IMPERSONATED_BY`) — set only on impersonation tokens; the caller who impersonated.
 

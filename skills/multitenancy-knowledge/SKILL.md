@@ -4,7 +4,7 @@ description: Knowledge base for Water Framework Company-based multitenancy — t
 allowed-tools: Read, Glob, Grep
 ---
 
-You are an expert on **Water Framework Company-based multitenancy**. You use this knowledge to answer questions and guide correct design/implementation/testing of tenant-aware modules. The authoritative, always-current design + implementation-status document is `source/multitenancy-analysis-proposal.md` — READ it for full rationale, the per-module intervention list, and the live status of what is done vs deferred. This skill is the durable summary.
+You are an expert on **Water Framework Company-based multitenancy**. You use this knowledge to answer questions and guide correct design/implementation/testing of tenant-aware modules. This skill is the authoritative reference for the multitenancy design, rules, and implementation status; when you need ground truth, verify against the current code at the file anchors listed in §14.
 
 ---
 
@@ -112,7 +112,7 @@ Everything is in the **Api layer** (`BaseEntityServiceImpl`, `Repository-service
 - **Clean up seeded rows in `@AfterAll`** (e.g. by a unique path/uid prefix) — pollution can push a pagination-sensitive Karate `CONTAINS` assertion in a sibling class off its page.
 - MT-ON behavioral tests catch bugs MT-OFF regression cannot. Always add: scoped visibility, admin/null cross-tenant, by-id cross-tenant deny, auto-assign, and one backward-compat (null company → unfiltered) case.
 
-## 13. Implementation status (see the analysis doc for the live version)
+## 13. Implementation status
 - ✅ **Done (4 tasselli)**: (1) foundations — markers, base classes, SecurityContext/UserPrincipal, JWT claim; (2) login MT — `UserCompany`, provider gate, issuer flag; (3) impersonation — `IMPERSONATE`, `impersonatedBy` claim, `/impersonate`; (4) enforcement — filter/auto-assign/restore, by-id gate, `Document`/`WaterRole`/`WaterUser` tenantized, resolver. All built + tested (regression MT-off + behavioral MT-on).
 - ⏳ **Deferred**: company-aware role ASSIGNMENT (`WaterUserRole` companyId dimension) + roles-in-token resolution; granular per-entity opt-out (`water.multitenancy.<fqcn>.shared`, fail-closed); company-scoped branch of impersonation; dedicated Permission-manager by-id unit test; strict fail-closed mode.
 

@@ -137,7 +137,7 @@ Response
 
 ## 1-bis. Multitenancy enforcement (Company-based)
 
-A THIRD access dimension alongside permission + ownership: **tenant scoping**. Full design in `source/multitenancy-analysis-proposal.md`. Opt-in per entity via the markers `TenantResource` (column `companyId`, null=global) / `MultiTenantResource` (M:N via `TenantMembershipResolver`).
+A THIRD access dimension alongside permission + ownership: **tenant scoping**. Full design in the `multitenancy-knowledge` skill. Opt-in per entity via the markers `TenantResource` (column `companyId`, null=global) / `MultiTenantResource` (M:N via `TenantMembershipResolver`).
 
 **Golden rule (lenient / backward compatible):** the tenant filter/check applies **only when `SecurityContext.getActiveCompanyId() != null`**. Null (MT off, non-scoped admin, legacy token) → no tenant restriction → identical to single-tenant. There is intentionally **NO `isAdmin()` special-casing** in the tenant dimension — admin scoping derives purely from whether a company is active (the owner filter still bypasses for admin; the tenant filter does not).
 
